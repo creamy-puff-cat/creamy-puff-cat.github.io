@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泡芙猫的个人主页</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入简单的图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 引入 Google Fonts: Fredoka One (英文标题), Quicksand (英文正文), ZCOOL KuaiLe (中文标题) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <!-- 引入 霞鹜文楷 (LXGW WenKai) 用于中文正文，兼具手写感和易读性 -->
+    <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
+    <!-- 引入 Chart.js 用于雷达图 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">泡芙猫</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li>
+                    <a href="#home">
+                        <!-- 夜间模式切换按钮放在左边 -->
+                        <button id="theme-toggle" class="theme-btn-inline" title="切换夜间模式">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        首页
+                    </a>
+                </li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#profile">猫咪档案</a></li>
+                <li><a href="#gallery">我的表情包</a></li>
+                <li><a href="#contact">联系我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页 Banner -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>
+                    你好，我是泡芙猫 
+                    <span class="badge" data-msg="本喵只想躺平...">睡神喵</span>
+                    <span class="badge badge-secondary" data-msg="再不给小鱼干就捣乱！">拆家小能手</span>
+                </h1>
+                <p>一只可爱的银渐层色美短，治愈你的每一天。</p>
+                <a href="#about" class="btn">了解更多</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-img-wrapper">
+                    <div class="avatar-container">
+                        <!-- 💡 提示：这里已经为您修改为图标.png，请确保 images 文件夹里有这个文件 -->
+                        <img src="images/图标.png" alt="泡芙猫的头像" class="avatar active">
+                        <img src="images/第一弹表情/暗中观察.png" alt="泡芙猫的头像" class="avatar">
+                        <img src="images/第一弹表情/带薪拉屎.png" alt="泡芙猫的头像" class="avatar">
+                    </div>
+                    <!-- 喵喵音效开关 -->
+                    <button id="meow-btn" class="meow-btn" title="点击开启喵喵叫">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                    <!-- 使用本地的 meow.mp3 -->
+                    <audio id="meow-sound" src="meow.mp3"></audio>
+                </div>
+                <div class="about-text">
+                    <div class="about-bubble">
+                        <h3>性格亮点</h3>
+                        <p>我是泡芙，一只把日子过成云朵的小猫。喜欢在阳光下打滚，喜欢听铲屎官的键盘声，也喜欢把小脑袋埋进温暖的掌心。2 岁的我，只想在你身边，做一只温柔又慵懒的小猫咪🌿</p>
+                    </div>
+                    
+                    <div class="hobbies-container">
+                        <h3>生活爱好</h3>
+                        <ul class="hobbies-list">
+                            <li><span>🐟</span> 吃小鱼干</li>
+                            <li><span>💤</span> 睡懒觉</li>
+                            <li><span>🧶</span> 玩毛线球</li>
+                            <li><span>🌞</span> 晒太阳</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 猫咪档案区：趣味信息展示 -->
+    <section id="profile" class="section">
+        <div class="container">
+            <h2 class="section-title">猫咪档案</h2>
+            
+            <div class="profile-layout">
+                <!-- 左侧：卡片式信息面板 -->
+                <div class="info-grid">
+                    <div class="info-card" data-sound="true">
+                        <i class="fas fa-paw icon"></i>
+                        <h3>品种</h3>
+                        <p>银渐层美短</p>
+                    </div>
+                    <div class="info-card" data-sound="true">
+                        <i class="fas fa-birthday-cake icon"></i>
+                        <h3>年龄</h3>
+                        <p>2 岁零 3 个月</p>
+                    </div>
+                    <div class="info-card" data-sound="true">
+                        <i class="fas fa-heart icon"></i>
+                        <h3>爱好</h3>
+                        <p>追激光笔 / 偷喝主人水杯水</p>
+                    </div>
+                    <div class="info-card" data-sound="true">
+                        <i class="fas fa-bolt icon"></i>
+                        <h3>必杀技</h3>
+                        <p>用尾巴扫掉桌上的笔</p>
+                    </div>
+                </div>
+
+                <!-- 右侧：性格雷达图 -->
+                <div class="radar-chart-container">
+                    <h3>喵星人性格分析</h3>
+                    <canvas id="personalityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 底部：猫咪语录弹幕 -->
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>今天的猫条不够吃！🐟</span>
+                    <span>主人又在拍我，烦死了 �</span>
+                    <span>那个红点点到底是什么？�</span>
+                    <span>什么时候开饭啊... 🥣</span>
+                    <span>朕的江山（纸箱）不可侵犯！📦</span>
+                    <span>铲屎的，过来给朕挠痒痒 🐾</span>
+                    <span>今天的猫条不够吃！🐟</span> <!-- 重复开头以便无缝滚动 -->
+                    <span>主人又在拍我，烦死了 �</span>
+                    <span>那个红点点到底是什么？�</span>
+                    <span>什么时候开饭啊... 🥣</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心能力/作品展示 (表情包系列) -->
+    <section id="gallery" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">我的表情包</h2>
+            <p class="section-subtitle">点击下方按钮切换查看不同系列哦</p>
+            
+            <!-- 分类标签按钮 -->
+            <div class="gallery-tabs">
+                <button class="tab-btn active" data-target="series1">系列一：日常卖萌</button>
+                <button class="tab-btn" data-target="series2">系列二：高冷时刻</button>
+            </div>
+
+            <!-- 系列一的内容 -->
+            <div id="series1" class="gallery-grid tab-content active">
+                <div class="gallery-item"><img src="images/第一弹表情/EMO.png" alt="EMO"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/与世无争.png" alt="与世无争"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/你瞅啥.png" alt="你瞅啥"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/别烦我.png" alt="别烦我"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/命苦.png" alt="命苦"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/啥情况.png" alt="啥情况"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/带薪拉屎.png" alt="带薪拉屎"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/打一架.png" alt="打一架"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/无语.png" alt="无语"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/暗中观察.png" alt="暗中观察"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/来玩鸭.png" alt="来玩鸭"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/求你了.png" alt="求你了"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/爽爽的.png" alt="爽爽的"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/疲惫.png" alt="疲惫"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/看不到我.png" alt="看不到我"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/让我看看.png" alt="让我看看"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/躺平.png" alt="躺平"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/这不好笑.png" alt="这不好笑"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/那咋了.png" alt="那咋了"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第一弹表情/马上来.png" alt="马上来"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+            </div>
+
+            <!-- 系列二的内容 -->
+            <div id="series2" class="gallery-grid tab-content">
+                <div class="gallery-item"><img src="images/第二弹表情/下雨.png" alt="下雨"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/不对劲.png" alt="不对劲"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/不是吧.png" alt="不是吧"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/不服.png" alt="不服"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/你醒啦.png" alt="你醒啦"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/卧槽.png" alt="卧槽"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/呜呜呜.png" alt="呜呜呜"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/哈哈哈.png" alt="哈哈哈"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/嘿嘿.png" alt="嘿嘿"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/思考.PNG" alt="思考"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/晚安.png" alt="晚安"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/有猫饼.png" alt="有猫饼"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/来财.png" alt="来财"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/没眼看.png" alt="没眼看"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/没眼看2.png" alt="没眼看2"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/烦死了.png" alt="烦死了"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/等雨停.png" alt="等雨停"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/给我.png" alt="给我"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/羡慕.png" alt="羡慕"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/谁在造谣.png" alt="谁在造谣"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/贴贴.png" alt="贴贴"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/这对吗.png" alt="这对吗"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/随便.png" alt="随便"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/饭饭.png" alt="饭饭"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/饿饿！.png" alt="饿饿"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item"><img src="images/第二弹表情/鼠了.png" alt="鼠了"><div class="overlay"><i class="fas fa-search-plus"></i></div></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">联系铲屎官</h2>
+            <div class="contact-wrapper">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>邮箱</h3>
+                    <p>puff@example.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p>@creamy_puff_cat</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-weixin"></i>
+                    <h3>微信</h3>
+                    <p>PuffCat123</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 泡芙猫. All Rights Reserved.</p>
+            <p class="footer-note">愿你每天都有好心情 ❤️</p>
+        </div>
+    </footer>
+
+    <!-- 图片弹窗 (Lightbox) -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- 自定义消息弹窗 (Toast/Modal) -->
+    <div id="custom-modal" class="custom-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-paw"></i> 泡芙猫说：
+            </div>
+            <p id="modal-text">这里是消息内容</p>
+            <button class="modal-btn">喵知道了</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

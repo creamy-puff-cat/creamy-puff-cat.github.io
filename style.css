@@ -1,0 +1,945 @@
+/* 全局变量：配色方案 */
+:root {
+    --primary-color: #AECCC0; /* 柔和的薄荷绿 */
+    --secondary-color: #F4D0D0; /* 柔和的粉色 */
+    --bg-color: #FDFCF0; /* 奶油白背景 */
+    --text-color: #6D5C56; /* 暖棕色文字，比灰色更温馨 */
+    --white: #ffffff;
+    --light-gray: #f9f9f9;
+    --shadow: 0 4px 15px rgba(109, 92, 86, 0.08); /* 阴影也带一点暖色 */
+    --radius: 12px;
+    --card-bg: #ffffff;
+}
+
+/* 夜间模式变量 */
+body.dark-mode {
+    --bg-color: #2c2c2c; /* 深灰背景 */
+    --text-color: #E8D5C4; /* 暖米色文字，柔和护眼 */
+    --white: #3a3a3a; /* 深色卡片背景 */
+    --card-bg: #3a3a3a;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --primary-color: #8fbdaf; /* 稍微深一点的薄荷绿 */
+}
+
+/* 夜间模式下的图片滤镜：暖色调+降低亮度，护眼且温馨 */
+body.dark-mode img {
+    filter: brightness(0.8) sepia(0.2);
+    transition: filter 0.5s;
+}
+
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 优先使用 Quicksand (英文) 和 霞鹜文楷 (中文) */
+    font-family: 'Quicksand', 'LXGW WenKai Screen', 'PingFang SC Rounded', 'Heiti SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7; /* 增加一点行高，阅读更轻松 */
+    font-size: 18px; /* 全局字号放大 */
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    /* 🐾 全局猫爪光标 */
+    cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat984.cur'), auto; 
+    
+    /* 🐾 背景猫咪脚印平铺 */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 20c2.5 0 4.5-2 4.5-4.5S32.5 11 30 11s-4.5 2-4.5 4.5S27.5 20 30 20zm-8 4c2.5 0 4.5-2 4.5-4.5S24.5 15 22 15s-4.5 2-4.5 4.5S19.5 24 22 24zm16 0c2.5 0 4.5-2 4.5-4.5S40.5 15 38 15s-4.5 2-4.5 4.5S35.5 24 38 24zM30 42c-5.5 0-10-4.5-10-10 0-4 2.5-7.5 6-9 1-0.5 2.5-0.5 3.5 0 0.5 0.2 1 0.5 1.5 0.8 0.5-0.3 1-0.6 1.5-0.8 1-0.5 2.5-0.5 3.5 0 3.5 1.5 6 5 6 9 0 5.5-4.5 10-10 10z' fill='%23aeccc0' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+}
+
+/* 标题使用胖胖的字体 (英文 Fredoka One, 中文 站酷快乐体) */
+h1, h2, h3, h4, h5, h6, .logo, .btn, .badge, .nav-menu a, .tab-btn {
+    font-family: 'Fredoka One', 'ZCOOL KuaiLe', 'LXGW WenKai Screen', cursive;
+    letter-spacing: 1.5px; /* 标题字间距再宽一点 */
+}
+
+a, button, .gallery-item, .btn, .tab-btn {
+    /* 悬停在可点击元素上时显示更明显的猫爪 */
+    cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat989.cur'), pointer;
+}
+
+/* 🖱️ 点击时的爱心特效 */
+.click-heart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* 居中 */
+    pointer-events: none; /* 确保不影响点击下面的元素 */
+    animation: heartPop 0.8s ease-out forwards;
+    font-size: 20px;
+    z-index: 9999;
+}
+
+@keyframes heartPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -150%) scale(1.5); /* 向上飘并变大 */
+        opacity: 0;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem; /* 放大标题 */
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #999;
+    font-size: 1.1rem; /* 放大副标题 */
+}
+
+.bg-light {
+    background-color: var(--card-bg);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    background-color: #8fbdaf;
+    transform: translateY(-2px);
+}
+
+/* 导航栏 */
+.navbar {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}.logo {
+    font-size: 1.8rem; /* 放大Logo */
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center; /* 确保垂直居中 */
+}
+
+.nav-menu a {
+    font-weight: 500;
+    font-size: 1.1rem; /* 放大导航菜单 */
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+/* 内嵌在菜单里的主题切换按钮 */
+.theme-btn-inline {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-right: 5px; /* 改为右边距，因为按钮在文字左边 */
+    margin-left: 0;
+    vertical-align: middle;
+    transition: transform 0.3s;
+    padding: 0;
+}
+
+.theme-btn-inline:hover {
+    transform: rotate(20deg);
+    color: var(--primary-color);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: var(--text-color);
+    margin: 3px 0;
+    border-radius: 3px;
+}
+
+/* Banner 区域 */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--secondary-color) 100%);
+    padding-top: 60px; /* 避开导航栏 */
+}
+
+.hero h1 {
+    font-size: 3.5rem; /* 放大Banner标题 */
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.hero p {
+    font-size: 1.4rem; /* 放大Banner文字 */
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 徽章样式 */
+.badge {
+    display: inline-block;
+    font-size: 0.5em; /* 相对于标题字体大小 */
+    vertical-align: middle;
+    padding: 5px 10px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    position: relative;
+    top: -5px;
+}
+
+.badge-secondary {
+    background-color: var(--primary-color);
+    animation-delay: 1s; /* 错开跳动时间 */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* 动态头像容器 */
+.about-img-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    border-radius: 50%;
+    /* 毛玻璃边框效果 */
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+/* 头像图片 */
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.avatar.active {
+    opacity: 1;
+}
+
+/* Hover 旋转特效 */
+.avatar-container:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+/* 喵喵按钮 */
+.meow-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    z-index: 10;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.meow-btn:hover {
+    transform: scale(1.1);
+    color: var(--secondary-color);
+}
+
+/* 关于我 */
+.about-content {
+    display: flex;
+    align-items: flex-start; /* 改为顶部对齐，配合气泡 */
+    gap: 50px;
+    margin-top: 30px;
+}
+
+/* 移除旧的 .about-img 样式，使用新的结构 */
+.about-text {
+    flex: 1;
+    position: relative;
+}
+
+/* 对话气泡样式 */
+.about-bubble {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    position: relative;
+    border: 3px solid var(--primary-color);
+    margin-bottom: 30px;
+}
+
+/* 气泡的小尾巴（指向左边的猫咪） */
+.about-bubble::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid var(--primary-color);
+}
+
+.about-bubble::after {
+    content: '';
+    position: absolute;
+    left: -11px; /* 稍微偏移覆盖掉边框颜色 */
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid var(--white);
+}
+
+.about-text h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-size: 1.5rem; /* 放大关于我标题 */
+}
+
+/* 爱好列表 - 多彩标签风格 */
+.hobbies-container h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    padding-left: 10px;
+}
+
+.hobbies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.hobbies-list li {
+    background: var(--white);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #666;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 给不同的爱好标签不同的边框颜色 */
+.hobbies-list li:nth-child(1) { border-color: #FFB7B2; color: #E07A7A; }
+.hobbies-list li:nth-child(2) { border-color: #B5EAD7; color: #5AA897; }
+.hobbies-list li:nth-child(3) { border-color: #E2F0CB; color: #9AB87A; }
+.hobbies-list li:nth-child(4) { border-color: #FFDAC1; color: #E89F71; }
+
+.hobbies-list li:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.hobbies-list li span {
+    font-size: 1.2rem;
+}
+
+/* 猫咪档案区布局 */
+.profile-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+/* 卡片式信息面板 */
+.info-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    min-width: 300px;
+}
+
+.info-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px; /* 更圆润的角 */
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05); /* 更柔和的阴影 */
+    transition: 0.3s;
+    cursor: pointer;
+    border: 3px solid #f0f0f0; /* 默认浅灰色边框 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 给卡片加一点可爱的装饰背景圆点 */
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    opacity: 0.2;
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-8px) rotate(2deg); /* 悬停时稍微歪一点，更调皮 */
+    box-shadow: 0 15px 30px rgba(244, 208, 208, 0.4); /* 粉色光晕 */
+    border-color: var(--secondary-color); /* 边框变粉色 */
+}
+
+.info-card:hover::before {
+    transform: scale(1.5); /* 装饰圆点变大 */
+}
+
+.info-card .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    background: #eef7f4; /* 图标背景圈 */
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.info-card h3 {
+    font-size: 1.4rem; /* 放大卡片标题 */
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.info-card p {
+    font-size: 1.1rem; /* 放大卡片文字 */
+    color: #666;
+    background: #fff8f8; /* 文字背景条 */
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* 性格雷达图 */
+.radar-chart-container {
+    flex: 0 1 400px; /* 限制最大宽度为 400px */
+    background: var(--white);
+    padding: 20px;
+    border-radius: 25px; /* 更圆润 */
+    box-shadow: var(--shadow);
+    min-width: 300px;
+    text-align: center;
+    border: 4px dashed var(--primary-color); /* 虚线边框更可爱 */
+}
+
+.radar-chart-container h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* 弹幕滚动 */
+.marquee-container {
+    background: var(--secondary-color);
+    padding: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-radius: var(--radius);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-right: 50px;
+    padding: 5px 15px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* 假设内容重复了一次，移动一半即可无缝 */
+}
+
+/* 暂停弹幕 */
+.marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* 夜间模式适配 */
+body.dark-mode .info-card,
+body.dark-mode .radar-chart-container {
+    background-color: var(--card-bg);
+}
+
+body.dark-mode .info-card p {
+    color: #aaa;
+}
+/* 表情包 Tab 按钮 - 猫耳风格 */
+.gallery-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.tab-btn {
+    padding: 12px 30px;
+    border: 3px solid var(--primary-color);
+    background: var(--white);
+    color: var(--primary-color);
+    /* 上圆下直，像猫耳朵 */
+    border-radius: 20px 20px 10px 10px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(174, 204, 192, 0.4);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(174, 204, 192, 0.4);
+}
+
+/* 表情包展示区 - 横向滚动胶卷风格 */
+.gallery-grid {
+    display: none;
+    /* 移除 Grid 布局，改为 Flex 横向滚动 */
+    /* grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); */
+    gap: 30px;
+    padding: 40px 20px; /* 上下留出空间给旋转和阴影 */
+    overflow-x: auto; /* 开启横向滚动 */
+    overflow-y: hidden;
+    scroll-behavior: smooth; /* 平滑滚动 */
+    -webkit-overflow-scrolling: touch; /* iOS 惯性滚动 */
+}
+
+.gallery-grid.active {
+    display: flex; /* 激活时使用 Flex */
+    flex-wrap: nowrap; /* 不换行 */
+    justify-content: flex-start;
+    align-items: center; /* 垂直居中 */
+}
+
+/* 自定义滚动条，更可爱 */
+.gallery-grid::-webkit-scrollbar {
+    height: 12px;
+}
+.gallery-grid::-webkit-scrollbar-track {
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin: 0 20px;
+}
+.gallery-grid::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    border: 3px solid #f9f9f9; /*以此产生空隙感*/
+}
+.gallery-grid::-webkit-scrollbar-thumb:hover {
+    background-color: #8fbdaf;
+}
+
+.gallery-item {
+    flex: 0 0 auto; /* 关键：不压缩，保持宽度 */
+    width: 220px; /* 固定宽度 */
+    background: #fff;
+    padding: 10px 10px 45px 10px; /* 底部留白更多，像拍立得 */
+    border-radius: 4px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性过渡 */
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px; /* 避免滚动条遮挡阴影 */
+}
+
+/* 随机旋转效果，制造散落在桌面的感觉 */
+.gallery-item:nth-child(3n+1) { transform: rotate(-3deg); }
+.gallery-item:nth-child(3n+2) { transform: rotate(2deg); }
+.gallery-item:nth-child(3n+3) { transform: rotate(4deg); }
+.gallery-item:nth-child(4n) { transform: rotate(-2deg); }
+
+.gallery-item:hover {
+    transform: scale(1.1) rotate(0deg) !important; /* 悬停时变大并摆正 */
+    z-index: 100;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* 拍立得照片上的“胶带”装饰 */
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+    /* 模拟胶带半透明磨砂感 */
+    backdrop-filter: blur(2px); 
+    border-left: 1px dashed rgba(0,0,0,0.1);
+    border-right: 1px dashed rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    display: block;
+    /* 给图片加一点点暗角，更有质感 */
+    filter: sepia(0.1); 
+}
+
+/* 拍立得照片底部的手写字 */
+.gallery-caption {
+    display: block;
+    margin-top: 10px;
+    font-family: "LXGW WenKai Screen", "Comic Sans MS", cursive; /* 使用霞鹜文楷作为手写体 */
+    color: #9c8479; /* 浅暖棕色，像咖啡渍 */
+    font-size: 1.25rem; /* 稍微大一点 */
+    letter-spacing: 1px;
+    font-weight: bold;
+    transform: rotate(-2deg); /* 稍微歪一点，更像手写 */
+}
+
+/* 确保所有表单元素继承可爱的字体 */
+button, input, textarea, select {
+    font-family: inherit;
+}
+
+/* 移除旧的 overlay 样式 */
+.overlay {
+    display: none; 
+}
+
+/* 底部文字（这里用伪元素简单模拟，或者利用 alt 属性，但目前结构里没有文字容器）
+   我们可以在 script.js 里把 alt 放到一个 span 里，或者直接用 CSS 这种简单方式 */
+.gallery-item::after {
+    content: 'Meow~'; /* 默认文字 */
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #888;
+    font-size: 0.9rem;
+}
+/* 这里稍微高级一点，利用 attr 获取 alt 内容（需要修改 html 结构或者用 JS，
+   CSS无法直接从 img 标签获取 alt 给父元素用。
+   不过没关系，我们可以统一显示一些可爱的文字，或者保持空白让用户聚焦图片） */
+.gallery-item::after {
+    content: '♥';
+    color: #ffb7b2;
+    font-size: 1.2rem;
+}
+
+/* 联系方式 */
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    width: 250px;
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.footer-note {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* 弹窗样式 */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* 背景模糊更高级 */
+}
+
+/* ... existing lightbox styles ... */
+
+/* 自定义消息弹窗 */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Q弹动画 */
+    border: 4px solid var(--primary-color);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-header i {
+    font-size: 1.5rem;
+}
+
+#modal-text {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal-btn {
+    padding: 10px 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.modal-btn:hover {
+    background-color: #eec0c0;
+    transform: scale(1.05);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--secondary-color);
+}
+
+/* 夜间模式适配 */
+body.dark-mode .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--primary-color);
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    animation: zoom 0.3s;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        background-color: var(--card-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transition: 0.3s;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+}
