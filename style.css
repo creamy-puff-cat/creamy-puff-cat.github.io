@@ -920,6 +920,54 @@ body.dark-mode .modal-content {
 
     .about-content {
         flex-direction: column;
+        align-items: center; /* 居中对齐 */
+    }
+
+    .avatar-container {
+        width: 260px; /* 缩小头像 */
+        height: 260px;
+        margin-bottom: 30px; /* 增加底部间距 */
+    }
+
+    /* 气泡箭头改为向上 */
+    .about-bubble::before {
+        left: 50%;
+        top: -15px;
+        transform: translateX(-50%);
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid var(--primary-color);
+        border-top: none;
+    }
+
+    .about-bubble::after {
+        left: 50%;
+        top: -11px;
+        transform: translateX(-50%);
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid var(--white);
+        border-top: none;
+    }
+
+    .profile-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .info-grid, 
+    .radar-chart-container {
+        min-width: 100%; /* 占满宽度 */
+        width: 100%;
+        flex: auto;
+    }
+    
+    .radar-chart-container {
+        padding: 10px; /* 减小内边距 */
+    }
+
+    .section {
+        padding: 50px 0; /* 减小上下间距 */
     }
     
     .menu-toggle {
@@ -941,5 +989,33 @@ body.dark-mode .modal-content {
 
     .nav-menu.active {
         left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .badge {
+        display: inline-block;
+        margin: 5px 2px;
+        font-size: 0.7rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr; /* 手机竖屏单列显示 */
+    }
+    
+    .gallery-item {
+        width: 200px; /* 稍微缩小图片宽度 */
     }
 }
